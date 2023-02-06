@@ -1,0 +1,6 @@
+Django
+django-rest-framework
+dj-rest-auth
+django-cors-headers
+django-filter
+gunicorn

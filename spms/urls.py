@@ -22,6 +22,8 @@ from message_server import views
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
 router.register(r"groups", views.GroupViewSet)
+router.register(r"bundles", views.UserBundleViewSet)
+router.register(r"messages", views.MessageViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),

@@ -3,6 +3,7 @@ from django.contrib.auth.models import Group, User
 # from django.shortcuts import render
 from rest_framework import permissions, viewsets
 
+from message_server.models import Message, UserBundle
 from message_server.serializers import GroupSerializer, UserSerializer
 
 
@@ -22,5 +23,25 @@ class GroupViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class UserBundleViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+
+    queryset = UserBundle.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class MessageViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows groups to be viewed or edited.
+    """
+
+    queryset = Message.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]

@@ -6,18 +6,12 @@ from django.db import models
 
 class UserBundle(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    identity_key = models.CharField("IdentityKey", max_length=255)
-    pre_key = models.CharField("PreKey", max_length=255)
-    pre_key_sig = models.CharField("PreKeySig", max_length=255)
+    identity_key = models.TextField("IdentityKey")
+    pre_key = models.TextField("PreKey")
+    pre_key_sig = models.TextField("PreKeySig")
     one_time_pre_key = models.TextField("OneTimePreKey")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    def set_one_time_pre_key(self, x):
-        self.one_time_pre_key = json.dumps(x)
-
-    def get_one_time_pre_key(self):
-        return json.loads(self.one_time_pre_key)
 
 
 class Message(models.Model):
@@ -30,6 +24,7 @@ class Message(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    message_read_at = models.DateTimeField(null=True)
 
 
 # Create your models here.

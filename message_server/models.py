@@ -1,3 +1,4 @@
+import base64
 import json
 
 from django.contrib.auth.models import User
@@ -6,10 +7,10 @@ from django.db import models
 
 class UserBundle(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    identity_key = models.TextField("IdentityKey")
-    pre_key = models.TextField("PreKey")
-    pre_key_sig = models.TextField("PreKeySig")
-    one_time_pre_key = models.TextField("OneTimePreKey")
+    identity_key = models.BinaryField("IdentityKey")
+    pre_key = models.BinaryField("PreKey")
+    pre_key_sig = models.BinaryField("PreKeySig")
+    one_time_pre_key = models.BinaryField("OneTimePreKey")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -18,7 +19,7 @@ class Message(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="%(class)s_to_user"
     )
-    message = models.TextField("Message Body")
+    message = models.BinaryField("Message Body")
     from_user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="%(class)s_from_user"
     )

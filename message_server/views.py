@@ -33,7 +33,7 @@ class UserBundleViewSet(viewsets.ModelViewSet):
     """
     queryset = UserBundle.objects.all()
     serializer_class = UserBundleSerializer
-    filterset_fields = [field.name for field in UserBundle._meta.fields]
+    filterset_fields = ['user']
     # permission_classes = [permissions.IsAuthenticated]
 
 
@@ -43,5 +43,5 @@ class MessageViewSet(viewsets.ModelViewSet):
     """
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    filterset_fields = [field.name for field in Message._meta.fields]
+    filterset_fields = [field.name for field in Message._meta.fields if field.name != 'message']
     # permission_classes = [permissions.IsAuthenticated]
